@@ -18,5 +18,5 @@ try:
             key = str(uuid.uuid4())
             self._redis.set(key, data)
             return key
-except ModuleNotFoundError:
+except (AttributeError, ModuleNotFoundError):
     print("Salam")
