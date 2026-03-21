@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 '''Redis Quickstart'''
-try:
-    import redis
-except ModuleNotFoundError:
-    print("Salam")
+
 import uuid
 import typing
 
