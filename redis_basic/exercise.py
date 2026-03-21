@@ -6,9 +6,9 @@ import uuid
 
 class Cache:
     '''Cache class'''
-    def __init__(self, r=redis.Redis()):
+    def __init__(self):
         '''Redis instance flushed'''
-        self._redis = r
+        self._redis = redis.Redis()
         self._redis.flushdb()
 
     def store(self, data):
