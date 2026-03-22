@@ -3,11 +3,12 @@
 
 import uuid
 import typing
+import redis
 
 
 class Cache:
     '''Cache class'''
-    def __init__(self):
+    def __init__(self) -> None:
         '''Redis instance flushed'''
         self._redis = redis.Redis()
         self._redis.flushdb()
