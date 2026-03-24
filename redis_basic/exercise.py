@@ -2,7 +2,7 @@
 '''Redis Quickstart'''
 
 import uuid
-import typing
+from typing import Union, Callable, Optional, Any
 import redis
 
 
@@ -13,8 +13,14 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: typing.Union[str, float, int, bytes]) -> str:
+    def store(self, data: Union[str, float, int, bytes]) -> str:
         '''Storing data in random key'''
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: Optional[Callable[bytes, any]] = None) -> Any:
+        value = self._redis.get(key)
+        if fn:
+            return fn(value)
+        return value
