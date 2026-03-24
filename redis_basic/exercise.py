@@ -20,7 +20,16 @@ class Cache:
         return key
 
     def get(self, key: str, fn: Optional[Callable[bytes, any]] = None) -> Any:
+        '''Getting value in desired format'''
         value = self._redis.get(key)
         if fn:
             return fn(value)
         return value
+
+    def get_str(self, key: str) -> Optional[str]:
+        '''Getting value in str'''
+        return self.get(key=key, fn=lambda v: v.decode('utf-8'))
+    
+    def get_int(self, key: str) -> Optional[int]:
+        '''Getting value in integer'''
+        return self.get(key=key, fn=int)
